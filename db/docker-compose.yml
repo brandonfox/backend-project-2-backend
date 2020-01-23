@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+    db:
+        container_name: "Mysql-container"
+        image: mysql
+        volumes:
+            - db_data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: "backend4backend"
+            MYSQL_USER: "server"
+            MYSQL_PASS: "serverPass"
+            MYSQL_DATABASE: "backenddb"
+        ports:
+            - 3033:3306
+
+volumes:
+    db_data:
