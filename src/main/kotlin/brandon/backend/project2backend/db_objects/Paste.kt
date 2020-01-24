@@ -1,11 +1,10 @@
 package brandon.backend.project2backend.db_objects
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import java.time.LocalDateTime
+import javax.persistence.*
 
 @Entity
+@Table(indexes = [ Index(name = "times", columnList = "createdAt", unique = false) ])
 class Paste constructor(
         @Id
         @GeneratedValue
@@ -15,7 +14,7 @@ class Paste constructor(
         @Column(nullable = false)
         var content: String? = null,
         @Column(nullable = false)
-        var timePosted: Long? = null
+        var createdAt: LocalDateTime? = null
 ){
 
 }

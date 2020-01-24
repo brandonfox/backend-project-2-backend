@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository
 
 interface PasteRepo : CrudRepository<Paste,Long> {
 
-    fun findTop100ByOrderByTimePostedDesc(): List<Paste>
+    fun findTop100ByOrderByCreatedAtDesc(): List<Paste>
 
 }
