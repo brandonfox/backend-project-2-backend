@@ -10,7 +10,6 @@ import java.lang.Exception
 import java.time.LocalDateTime
 
 @RestController
-@CrossOrigin(origins = ["http://localhost:8080"])
 @RequestMapping("/api")
 class ApiController @Autowired constructor(val pasteRepo: PasteRepo){
 
