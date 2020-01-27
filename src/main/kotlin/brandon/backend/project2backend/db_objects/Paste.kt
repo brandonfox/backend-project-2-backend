@@ -11,7 +11,7 @@ class Paste constructor(
         var id: Long? = null,
         @Column(nullable = false)
         var title: String? = null,
-        @Column(nullable = false)
+        @Column(nullable = false,columnDefinition="LONGTEXT")
         var content: String? = null,
         @Column(nullable = false)
         var createdAt: LocalDateTime? = null
