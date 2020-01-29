@@ -9,3 +9,5 @@ services:
       MYSQL_USER: "server"
       MYSQL_PASS: "serverPass"
       MYSQL_DATABASE: "backenddb"
+    ports:
+    - 3306:3306
