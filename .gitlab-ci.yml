@@ -3,22 +3,6 @@ image: docker/compose:latest
 services:
   - docker:dind
 
-build:
-  stage: build
-  script:
-    - docker build -t backend .
-
-test:
-  stage: test
-  before_script:
-    - cd BuildTesting
-    - docker-compose up &
-    - cd ..
-  script:
-    - mvn spring-boot:run &
-    - ./wait-for-spring.sh
-    - mvn test
-
 deploy:
   stage: deploy
   script:
