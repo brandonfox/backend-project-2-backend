@@ -1,0 +1,26 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+build:
+  stage: build
+  script:
+    - docker build -t backend .
+
+test:
+  stage: test
+  before_script:
+    - cd BuildTesting
+    - docker-compose up
+    - cd ..
+  script:
+    - docker build -t backend .
+    - docker run backend
+
+deploy:
+  stage: deploy
+  script:
+    - docker login -u brandonfox -p $gitlab-password
+    - docker build -t registry.gitlab.com/brandonfox/backend-project-2-backend .
+    - docker push registry.gitlab.com/brandonfox/backend-project-2-backend
