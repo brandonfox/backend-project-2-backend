@@ -1,4 +1,4 @@
-image: docker:latest
+image: docker/compose:latest
 
 services:
   - docker:dind
@@ -12,15 +12,16 @@ test:
   stage: test
   before_script:
     - cd BuildTesting
-    - docker-compose up
+    - docker-compose up &
     - cd ..
   script:
-    - docker build -t backend .
-    - docker run backend
+    - mvn spring-boot:run &
+    - ./wait-for-spring.sh
+    - mvn test
 
 deploy:
   stage: deploy
   script:
-    - docker login -u brandonfox -p $gitlab-password
+    - docker login -u brandonfox -p $gitlab-password registry.gitlab.com
     - docker build -t registry.gitlab.com/brandonfox/backend-project-2-backend .
     - docker push registry.gitlab.com/brandonfox/backend-project-2-backend
