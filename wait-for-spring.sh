@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 time=0;
 timeout=20
 
 while ! curl localhost:8080 | grep -q 'connection refused'  && [ $time -lt $timeout ] ; do
-  ((time++))
+  time=$((time+1))
   sleep 1
 done ;
 
